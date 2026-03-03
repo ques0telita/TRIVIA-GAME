@@ -1,7 +1,7 @@
 body {
   font-family: Arial, sans-serif;
   text-align: center;
-  background-color: #f4f4f9;
+  background-color: #000000;
   margin: 0;
   padding: 0;
 }
@@ -54,4 +54,14 @@ button:hover {
   margin-top: 20px;
   font-size: 18px;
   font-weight: bold;
+}
+
+.pie{
+    text-align: bottom;
+    color: white;
+    border-radius: 50%
+}
+
+.profile{
+    color: tomato;
 }

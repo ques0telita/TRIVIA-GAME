@@ -1,48 +1,48 @@
 // Preguntas y respuestas
 const questions = [
   {
-    question: "¿Cuál es el nombre completo de HTML?",
+    question: "¿Cuál es el elemento químico más abundante en el universo?",
     answers: [
-      { text: "HyperText Markup Language", correct: true },
-      { text: "HyperText Markdown Language", correct: false },
-      { text: "HighText Machine Language", correct: false },
-      { text: "HyperTool Markup Language", correct: false }
+        { text: "Helio", correct: false },
+        { text: "Oxígeno", correct: false },
+        { text: "Hidrógeno", correct: true },
+        { text: "Carbono", correct: false }
     ]
   },
   {
-    question: "¿Qué significa CSS?",
+    question: "¿En qué año cayó el Muro de Berlín, simbolizando el fin próximo de la Guerra Fría?",
     answers: [
-      { text: "Cascading Style Sheets", correct: true },
-      { text: "Creative Style System", correct: false },
-      { text: "Computer Style Sheets", correct: false },
-      { text: "Colorful Style Syntax", correct: false }
+        { text: "1991", correct: false },
+        { text: "1989", correct: true },
+        { text: "1987", correct: false },
+        { text: "1993", correct: false }
     ]
   },
   {
-    question: "¿Qué método se usa para agregar un elemento al final de un array en JavaScript?",
+    question: "¿Quién escribió la famosa novela 'Cien años de soledad'?",
     answers: [
-      { text: "push()", correct: true },
-      { text: "pop()", correct: false },
-      { text: "shift()", correct: false },
-      { text: "unshift()", correct: false }
+        { text: "Pablo Neruda", correct: false },
+        { text: "Octavio Paz", correct: false },
+        { text: "Gabriel García Márquez", correct: true },
+        { text: "Mario Vargas Llosa", correct: false }
     ]
   },
   {
-    question: "¿Qué etiqueta HTML se usa para incluir JavaScript en una página?",
+    question: "¿Qué órgano del cuerpo humano consume más energía?",
     answers: [
-      { text: "<script>", correct: true },
-      { text: "<javascript>", correct: false },
-      { text: "<js>", correct: false },
-      { text: "<code>", correct: false }
+        { text: "Cerebro", correct: true },
+        { text: "Corazón", correct: false },
+        { text: "Hígado", correct: false },
+        { text: "Musculos Esqueleticos", correct: false }
     ]
   },
   {
-    question: "¿Qué propiedad de CSS se usa para cambiar el color de fondo?",
+    question: "¿Qué pintor es conocido por haber pintado 'La persistencia de la memoria'?",
     answers: [
-      { text: "background-color", correct: true },
-      { text: "color", correct: false },
-      { text: "bg-color", correct: false },
-      { text: "background", correct: false }
+      { text: "Salvador Dalí", correct: true },
+      { text: "Pablo Picasso", correct: false },
+      { text: "Vincent van Gogh", correct: false },
+      { text: "Leonardo da Vinci", correct: false }
     ]
   }
 ];
