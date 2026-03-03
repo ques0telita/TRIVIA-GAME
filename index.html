@@ -1,13 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TRIVIA</title>
-    <link rel="stylesheet" href="styles.css">
-    
-</head>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TRIVIA GAME</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -16,70 +13,14 @@
             <source src="VDF.mp4" type="video/mp4">
         </video>
     </div>
-        <div class="container">
-            <div class: puntaje id="puntaje"></div>
-            <div class="encabezado">
-                <div class="categoria" id="categoria">
-                    <h1>Categoria</h1>
-                </div>
-                <div class="pregunta" id="pregunta">
-                    <h2>Pregunta</h2>       
-                </div>
-                <img src="" class="imagen" id="imagen">
-            </div>
-            <div class="botones">
-                <div class="btn" id="btn1">Respuesta 1
-                    Opcion 1
-                </div>
-                <div class="btn" id="btn2">Respuesta 2
-                    Opcion 2
-                </div>
-                <div class="btn" id="btn3">Respuesta 3
-                    Opcion 3
-                </div>
-                <div class="btn" id="btn4">Respuesta 4
-                    Opcion 4
-                </div>
-            </div>
-        </div>
-    <script>
-
-        escogerPregunta(0);
-
-        function escogerPregunta(n) {
-            let base_pregunta = readText("base-preguntas.json")
-            let interprete_bp = JSON.parse(base_pregunta)
-            let pregunta = interprete_bp[n]
-            select_id("categoria").innerHTML = pregunta.categoria
-            select_id("pregunta").innerHTML = pregunta.pregunta
-            select_id("imagen").setAttribute("src", pregunta.imagen)
-            style(imagen).objectFit = pregunta.objectFit;
-            select_id("btn1").innerHTML = pregunta.respuesta
-            select_id("btn2").innerHTML = pregunta.incorrecta1
-            select_id("btn3").innerHTML = pregunta.incorrecta2
-            select_id("btn4").innerHTML = pregunta.incorrecta3
-        }
-
-        function select_id(id) {
-        return document.getElementById(id);
-        }
-
-        function style(id) {
-        return select_id(id).style;
-        }
-
-        function readText(ruta_local) {
-        var texto = null;
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("GET", ruta_local, false);
-        xmlhttp.send();
-        if (xmlhttp.status == 200) {
-            texto = xmlhttp.responseText;
-        }
-        return texto;
-        }
-
-    </script>
+    
+    <div class="container">
+        <h1>Trivia Difícil</h1>
+        <p id="question"></p>
+        <div id="answers"></div>
+        <button id="next-btn" onclick="nextQuestion()">Siguiente</button>
+        <p id="score"></p>
+    </div>
+  <script src="index.js"></script>
 </body>
-
 </html>

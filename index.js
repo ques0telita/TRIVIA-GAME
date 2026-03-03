@@ -1,51 +1,125 @@
-// const preguntas = [
-//     {
-//         categoria: "CIENCIA",
-//         pregunta: "¿Cuál es el planeta más cercano al Sol?",
-//         opciones: ["Marte", "Mercurio", "Venus", "Tierra"],
-//         correcta: 1
-//     },
-//     {
-//         categoria: "HISTORIA",
-//         pregunta: "¿En qué año llegó el hombre a la Luna?",
-//         opciones: ["1965", "1972", "1969", "1980"],
-//         correcta: 2
-//     }
-// ];
+// Preguntas y respuestas
+const questions = [
+  {
+    question: "¿Cuál es el nombre completo de HTML?",
+    answers: [
+      { text: "HyperText Markup Language", correct: true },
+      { text: "HyperText Markdown Language", correct: false },
+      { text: "HighText Machine Language", correct: false },
+      { text: "HyperTool Markup Language", correct: false }
+    ]
+  },
+  {
+    question: "¿Qué significa CSS?",
+    answers: [
+      { text: "Cascading Style Sheets", correct: true },
+      { text: "Creative Style System", correct: false },
+      { text: "Computer Style Sheets", correct: false },
+      { text: "Colorful Style Syntax", correct: false }
+    ]
+  },
+  {
+    question: "¿Qué método se usa para agregar un elemento al final de un array en JavaScript?",
+    answers: [
+      { text: "push()", correct: true },
+      { text: "pop()", correct: false },
+      { text: "shift()", correct: false },
+      { text: "unshift()", correct: false }
+    ]
+  },
+  {
+    question: "¿Qué etiqueta HTML se usa para incluir JavaScript en una página?",
+    answers: [
+      { text: "<script>", correct: true },
+      { text: "<javascript>", correct: false },
+      { text: "<js>", correct: false },
+      { text: "<code>", correct: false }
+    ]
+  },
+  {
+    question: "¿Qué propiedad de CSS se usa para cambiar el color de fondo?",
+    answers: [
+      { text: "background-color", correct: true },
+      { text: "color", correct: false },
+      { text: "bg-color", correct: false },
+      { text: "background", correct: false }
+    ]
+  }
+];
 
-// let indiceActual = 0;
+let currentQuestionIndex = 0;
+let score = 0;
 
-// const txtCategoria = document.getElementById('categoria');
-// const txtPregunta = document.getElementById('pregunta');
-// const contenedorOpciones = document.getElementById('opciones');
-// const btnSiguiente = document.getElementById('btn-siguiente');
+// Elementos del DOM
+const questionElement = document.getElementById("question");
+const answersElement = document.getElementById("answers");
+const nextButton = document.getElementById("next-btn");
+const scoreElement = document.getElementById("score");
 
-// function cargarPregunta() {
-//     const p = preguntas[indiceActual];
-//     txtCategoria.innerText = p.categoria;
-//     txtPregunta.innerText = p.pregunta;
-//     contenedorOpciones.innerHTML = "";
+// Mostrar la pregunta actual
+function showQuestion() {
+  resetState();
+  const currentQuestion = questions[currentQuestionIndex];
+  questionElement.textContent = currentQuestion.question;
 
-//     p.opciones.forEach((opcion, index) => {
-//         const boton = document.createElement('button');
-//         boton.innerText = opcion;
-//         boton.onclick = () => verificarRespuesta(index);
-//         contenedorOpciones.appendChild(boton);
-//     });
-// }
+  currentQuestion.answers.forEach(answer => {
+    const button = document.createElement("button");
+    button.textContent = answer.text;
+    button.classList.add("answer-btn");
+    if (answer.correct) {
+      button.dataset.correct = answer.correct;
+    }
+    button.addEventListener("click", selectAnswer);
+    answersElement.appendChild(button);
+  });
+}
 
-// function verificarRespuesta(index) {
-//     if(index === preguntas[indiceActual].correcta) {
-//         alert("¡Correcto!");
-//     } else {
-//         alert("Incorrecto...");
-//     }
-// }
+// Reiniciar el estado de la pregunta
+function resetState() {
+  nextButton.style.display = "none";
+  while (answersElement.firstChild) {
+    answersElement.removeChild(answersElement.firstChild);
+  }
+}
 
-// btnSiguiente.onclick = () => {
-//     indiceActual = (indiceActual + 1) % preguntas.length;
-//     cargarPregunta();
-// };
+// Seleccionar una respuesta
+function selectAnswer(e) {
+  const selectedButton = e.target;
+  const correct = selectedButton.dataset.correct === "true";
 
-// // Iniciar
-// cargarPregunta();
+  if (correct) {
+    score++;
+    selectedButton.style.backgroundColor = "green";
+  } else {
+    selectedButton.style.backgroundColor = "red";
+  }
+
+  Array.from(answersElement.children).forEach(button => {
+    if (button.dataset.correct === "true") {
+      button.style.backgroundColor = "green";
+    }
+    button.disabled = true;
+  });
+
+  nextButton.style.display = "block";
+}
+
+// Pasar a la siguiente pregunta
+function nextQuestion() {
+  currentQuestionIndex++;
+  if (currentQuestionIndex < questions.length) {
+    showQuestion();
+  } else {
+    showScore();
+  }
+}
+
+// Mostrar el puntaje final
+function showScore() {
+  resetState();
+  questionElement.textContent = `¡Trivia terminada! Tu puntaje final es ${score} de ${questions.length}.`;
+  nextButton.style.display = "none";
+}
+
+// Iniciar la trivia
+showQuestion();
