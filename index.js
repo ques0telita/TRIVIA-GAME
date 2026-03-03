@@ -50,13 +50,13 @@ const questions = [
 let currentQuestionIndex = 0;
 let score = 0;
 
-// Elementos del DOM
+// elementicos importanticos
 const questionElement = document.getElementById("question");
 const answersElement = document.getElementById("answers");
 const nextButton = document.getElementById("next-btn");
 const scoreElement = document.getElementById("score");
 
-// Mostrar la pregunta actual
+// ejto de aca muestra la pregunta
 function showQuestion() {
   resetState();
   const currentQuestion = questions[currentQuestionIndex];
@@ -74,7 +74,7 @@ function showQuestion() {
   });
 }
 
-// Reiniciar el estado de la pregunta
+// reset para la next pregunta
 function resetState() {
   nextButton.style.display = "none";
   while (answersElement.firstChild) {
@@ -82,7 +82,7 @@ function resetState() {
   }
 }
 
-// Seleccionar una respuesta
+// para seleccionar la respuesta
 function selectAnswer(e) {
   const selectedButton = e.target;
   const correct = selectedButton.dataset.correct === "true";
@@ -104,7 +104,7 @@ function selectAnswer(e) {
   nextButton.style.display = "block";
 }
 
-// Pasar a la siguiente pregunta
+// boton para pasar a la next pregunta
 function nextQuestion() {
   currentQuestionIndex++;
   if (currentQuestionIndex < questions.length) {
@@ -114,12 +114,12 @@ function nextQuestion() {
   }
 }
 
-// Mostrar el puntaje final
+// mostrar el puntaje
 function showScore() {
   resetState();
   questionElement.textContent = `¡Trivia terminada! Tu puntaje final es ${score} de ${questions.length}.`;
   nextButton.style.display = "none";
 }
 
-// Iniciar la trivia
+// start de la trivinopolis
 showQuestion();
