@@ -28,12 +28,12 @@ const questions = [
     ]
   },
   {
-    question: "¿Qué órgano del cuerpo humano consume más energía?",
+    question: "¿Cuál es la obra de arte más antigua conocida realizada por humanos (o ancestros humanos)?",
     answers: [
-        { text: "Cerebro", correct: true },
-        { text: "Corazón", correct: false },
-        { text: "Hígado", correct: false },
-        { text: "Musculos Esqueleticos", correct: false }
+        { text: "Pinturas rupestres de la cueva de Altamira", correct: false },
+        { text: "Leon-humano de la cueva de Stadel", correct: false },
+        { text: "La Venus de Willendorf", correct: false },
+        { text: "Grabados en una concha de Trinil", correct: true }
     ]
   },
   {
@@ -44,7 +44,52 @@ const questions = [
       { text: "Vincent van Gogh", correct: false },
       { text: "Leonardo da Vinci", correct: false }
     ]
-  }
+  },
+  {
+    question: "¿Cuál fue el primer país del mundo en conceder a las mujeres el derecho al voto en elecciones nacionales?",
+    answers: [
+      { text: "Estados Unidos", correct: false },
+      { text: "Nueva Zelanda", correct: true },
+      { text: " Suecia", correct: false },
+      { text: "Finlandia", correct: false }
+    ]
+  },
+  {
+    question: "¿Cuál es el único país del mundo que tiene una bandera que no es cuadrilátera (ni cuadrada ni rectangular)?",
+    answers: [
+      { text: "Butan", correct: false },
+      { text: "Ciudad del VAticano", correct: false },
+      { text: " Suiza", correct: false },
+      { text: "Nepal", correct: true }
+    ]
+  },
+  {
+    question: "¿A qué filósofo se le atribuye la famosa frase: 'El hombre es un lobo para el hombre' (Homo homini lupus)?",
+    answers: [
+      { text: "Thomas Hobbes", correct: true },
+      { text: "John Locke", correct: false },
+      { text: "Jean-Jacques Rousseau", correct: false },
+      { text: "Immanuel Kant", correct: false }
+    ]
+  },
+  {
+    question: "¿Cuál es el metal más escaso en la corteza terrestre?",
+    answers: [
+        { text: "Francio", correct: false },
+        { text: "Iridio", correct: false },
+        { text: "Astato", correct: true },
+        { text: "Rodio", correct: false }
+    ]
+  },
+  {
+    question: "En la mitología griega, ¿quién fue el único mortal que logró engañar a Tánatos (la muerte) encadenándola?",
+    answers: [
+        { text: "Orfeo", correct: false },
+        { text: "Tantalo", correct: false },
+        { text: "Sísifo", correct: true },
+        { text: "Prometeo", correct: false }
+    ]
+  },
 ];
 
 let currentQuestionIndex = 0;
