@@ -13,13 +13,16 @@
 <body>
     <div class="video-container">
         <video autoplay muted loop poster>
-            <source src="VDF.mp4" type="video/mp4">
+            <source src="backgvid.mp4" type="video/mp4">
         </video>
     </div>
     
     <div class="question-container">
         <p id="question"></p>
-    </div>
+        <div class="question-image-container">
+          <img src="" alt="foto" id="question-image" class="question-image">
+        </div>
+      </div>
 
         <div id="answers" class="answer-container"></div>
         <button id="next-btn" onclick="nextQuestion()">Siguiente</button>
@@ -27,10 +30,10 @@
     
   <script src="index.js"></script>
 
-  <footer class="pie">
+  <!-- <footer class="pie">
     <div class="divfooter">
       <p>Creado por <a href="https://github.com/Ques0telita" target="_blank" class="profile">Sebastian Castro</a></p>
     </div>
-  </footer>
+  </footer> -->
 </body>
 </html>

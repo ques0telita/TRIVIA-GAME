@@ -2,6 +2,7 @@
 const questions = [
   {
     question: "¿Cuál es el elemento químico más abundante en el universo?",
+    image: "imagenes/fotouniverso.jpg",
     answers: [
         { text: "Helio", correct: false },
         { text: "Oxígeno", correct: false },
@@ -11,6 +12,7 @@ const questions = [
   },
   {
     question: "¿En qué año cayó el Muro de Berlín, simbolizando el fin próximo de la Guerra Fría?",
+    image : "imagenes/murodeB.jpg",
     answers: [
         { text: "1991", correct: false },
         { text: "1989", correct: true },
@@ -20,6 +22,7 @@ const questions = [
   },
   {
     question: "¿Quién escribió la famosa novela 'Cien años de soledad'?",
+    image: "imagenes/CADS.webp",
     answers: [
         { text: "Pablo Neruda", correct: false },
         { text: "Octavio Paz", correct: false },
@@ -29,6 +32,7 @@ const questions = [
   },
   {
     question: "¿Cuál es la obra de arte más antigua conocida realizada por humanos (o ancestros humanos)?",
+    image: "imagenes/garabatos.webp",
     answers: [
         { text: "Pinturas rupestres de la cueva de Altamira", correct: false },
         { text: "Leon-humano de la cueva de Stadel", correct: false },
@@ -38,6 +42,7 @@ const questions = [
   },
   {
     question: "¿Qué pintor es conocido por haber pintado 'La persistencia de la memoria'?",
+    image: "imagenes/persistencia.jpg",
     answers: [
       { text: "Salvador Dalí", correct: true },
       { text: "Pablo Picasso", correct: false },
@@ -47,6 +52,7 @@ const questions = [
   },
   {
     question: "¿Cuál fue el primer país del mundo en conceder a las mujeres el derecho al voto en elecciones nacionales?",
+    image: "imagenes/voto.avif",
     answers: [
       { text: "Estados Unidos", correct: false },
       { text: "Nueva Zelanda", correct: true },
@@ -56,15 +62,17 @@ const questions = [
   },
   {
     question: "¿Cuál es el único país del mundo que tiene una bandera que no es cuadrilátera (ni cuadrada ni rectangular)?",
+    image: "imagenes/flags.jpeg",
     answers: [
       { text: "Butan", correct: false },
-      { text: "Ciudad del VAticano", correct: false },
+      { text: "Ciudad del Vaticano", correct: false },
       { text: " Suiza", correct: false },
       { text: "Nepal", correct: true }
     ]
   },
   {
     question: "¿A qué filósofo se le atribuye la famosa frase: 'El hombre es un lobo para el hombre' (Homo homini lupus)?",
+    image: "imagenes/ThomasH.webp",
     answers: [
       { text: "Thomas Hobbes", correct: true },
       { text: "John Locke", correct: false },
@@ -74,6 +82,7 @@ const questions = [
   },
   {
     question: "¿Cuál es el metal más escaso en la corteza terrestre?",
+    image: "imagenes/astato.jpg",
     answers: [
         { text: "Francio", correct: false },
         { text: "Iridio", correct: false },
@@ -83,6 +92,7 @@ const questions = [
   },
   {
     question: "En la mitología griega, ¿quién fue el único mortal que logró engañar a Tánatos (la muerte) encadenándola?",
+    image: "imagenes/tanatos.webp",
     answers: [
         { text: "Orfeo", correct: false },
         { text: "Tantalo", correct: false },
@@ -104,8 +114,16 @@ const scoreElement = document.getElementById("score");
 // ejto de aca muestra la pregunta
 function showQuestion() {
   resetState();
+  answersElement.style.display = "flex";
   const currentQuestion = questions[currentQuestionIndex];
+  console.log("Showing question:", currentQuestion.question);
   questionElement.textContent = currentQuestion.question;
+  if (currentQuestion.image) {
+    document.getElementById("question-image").src = currentQuestion.image;
+    document.getElementById("question-image").style.display = "block";
+  } else {
+    document.getElementById("question-image").style.display = "none";
+  }
 
   currentQuestion.answers.forEach(answer => {
     const button = document.createElement("button");
@@ -131,20 +149,28 @@ function resetState() {
 function selectAnswer(e) {
   const selectedButton = e.target;
   const correct = selectedButton.dataset.correct === "true";
+  console.log("Selected answer:", selectedButton.textContent, "Correct:", correct);
 
   if (correct) {
     score++;
+    // resalta la respuesta correcta y reproduce el sonido de acierto
     selectedButton.style.backgroundColor = "green";
+    const audio = new Audio('sonidos/ta-daaaa.mp3');
+    audio.play();
   } else {
+    //resalta la respuesta incorrecta y reproduce el sonido de error
     selectedButton.style.backgroundColor = "red";
+    const audio = new Audio('sonidos/wrong1.mp3');
+    audio.play();
   }
 
-  Array.from(answersElement.children).forEach(button => {
+// esto muestra larespuesta correcta
+  for (const button of answersElement.children) {
     if (button.dataset.correct === "true") {
       button.style.backgroundColor = "green";
     }
     button.disabled = true;
-  });
+  };
 
   nextButton.style.display = "block";
 }
@@ -152,6 +178,7 @@ function selectAnswer(e) {
 // boton para pasar a la next pregunta
 function nextQuestion() {
   currentQuestionIndex++;
+  console.log("Next question index:", currentQuestionIndex);
   if (currentQuestionIndex < questions.length) {
     showQuestion();
   } else {
@@ -162,8 +189,12 @@ function nextQuestion() {
 // mostrar el puntaje
 function showScore() {
   resetState();
+  document.getElementById("question-image").style.display = "none";
+  answersElement.style.display = "none";
+  console.log("Final score:", score, "out of", questions.length);
   questionElement.textContent = `¡Trivia terminada! Tu puntaje final es ${score} de ${questions.length}.`;
   nextButton.style.display = "none";
+
 }
 
 // start de la trivinopolis
