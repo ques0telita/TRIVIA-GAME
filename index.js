@@ -214,3 +214,4 @@ function showScore() {
 
 // inicia el juego mostrando la primera pregunta al usuario
 showQuestion();
+// enciende todo tu proyecto, si no tiene esta linea al final, al abrir la pagina verias el contenedor vacio y sin texto ni botones
