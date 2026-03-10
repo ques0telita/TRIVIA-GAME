@@ -1,6 +1,7 @@
-// Preguntas y respuestas
+// preguntas y respuestas
 const questions = [
   {
+    // cada pregunta tiene un texto, una imagen y un array de respuestas, cada respuesta tiene un texto y una propiedad "correct" que indica si es la respuesta correcta o no
     question: "¿Cuál es el elemento químico más abundante en el universo?",
     image: "imagenes/fotouniverso.jpg",
     answers: [
@@ -101,30 +102,37 @@ const questions = [
     ]
   },
 ];
-
+// la variable para rastrear el índice de la pregunta actual que se muestra al usuario
 let currentQuestionIndex = 0;
+// la variable para acumular los puntos del usuario a medida que responde correctamente a las preguntas
 let score = 0;
 
-// elementicos importanticos
+// elementos del DOM (pregunta, respuestas, boton siguiente y puntaje)
+// los eventos de el DOM permite responder a acciones del usuario, como clics o escritura, y ejecutar funciones en respuesta a esas acciones
 const questionElement = document.getElementById("question");
 const answersElement = document.getElementById("answers");
 const nextButton = document.getElementById("next-btn");
 const scoreElement = document.getElementById("score");
 
-// ejto de aca muestra la pregunta
+// mostrar la pregunta
 function showQuestion() {
+  // esto fundamental, ya que limpia el contenedor de respuestas y oculta el boton "siguiente" cada vez que pasamos de una pregunta a otra, evitando que se acumulen elementos en pantalla
   resetState();
+  // muestra las respuestas y la pregunta
   answersElement.style.display = "flex";
+  // muestra la pregunta actual y su imagen correspondiente en el DOM
   const currentQuestion = questions[currentQuestionIndex];
+  // esto es para verificar que la pregunta se está mostrando correctamente en el navegador
   console.log("Showing question:", currentQuestion.question);
   questionElement.textContent = currentQuestion.question;
+  // esto es para verificar que la imagen se está mostrando correctamente en el navegador
   if (currentQuestion.image) {
     document.getElementById("question-image").src = currentQuestion.image;
     document.getElementById("question-image").style.display = "block";
   } else {
     document.getElementById("question-image").style.display = "none";
   }
-
+// recorre el array de respuestas de la pregunta actual y crea un botón para cada respuesta, asignando su texto y una propiedad "correct" 
   currentQuestion.answers.forEach(answer => {
     const button = document.createElement("button");
     button.textContent = answer.text;
@@ -140,6 +148,7 @@ function showQuestion() {
 // reset para la next pregunta
 function resetState() {
   nextButton.style.display = "none";
+  // esto es para verificar que el estado se está reseteando correctamente en el navegador
   while (answersElement.firstChild) {
     answersElement.removeChild(answersElement.firstChild);
   }
@@ -149,6 +158,7 @@ function resetState() {
 function selectAnswer(e) {
   const selectedButton = e.target;
   const correct = selectedButton.dataset.correct === "true";
+  // esto es para verificar que la respuesta seleccionada es correcta o incorrecta en el navegador
   console.log("Selected answer:", selectedButton.textContent, "Correct:", correct);
 
   if (correct) {
@@ -164,21 +174,23 @@ function selectAnswer(e) {
     audio.play();
   }
 
-// esto muestra larespuesta correcta
+// esto muestra larespuesta correcta o incorrecta, y no permite cambiar de respuesta
   for (const button of answersElement.children) {
     if (button.dataset.correct === "true") {
       button.style.backgroundColor = "green";
     }
     button.disabled = true;
   };
-
+// esto es para verificar que el botón de siguiente se muestra en el navegador
   nextButton.style.display = "block";
 }
 
-// boton para pasar a la next pregunta
+// funcion para pasar a la siguiente pregunta
 function nextQuestion() {
   currentQuestionIndex++;
+// esto es para verificar que el índice de la pregunta se está actualizando correctamente en el navegador
   console.log("Next question index:", currentQuestionIndex);
+// esto es para verificar que se muestra la siguiente pregunta o el puntaje final en el navegador
   if (currentQuestionIndex < questions.length) {
     showQuestion();
   } else {
@@ -186,16 +198,19 @@ function nextQuestion() {
   }
 }
 
-// mostrar el puntaje
+// mostrar el puntaje final al usuario
 function showScore() {
   resetState();
+  // oculta la imagen de la pregunta y las respuestas, y muestra el puntaje final al usuario
   document.getElementById("question-image").style.display = "none";
   answersElement.style.display = "none";
+  // esto es para verificar que el puntaje se está mostrando correctamente en el navegador
   console.log("Final score:", score, "out of", questions.length);
+  // muestra el mensaje de puntaje final al usuario
   questionElement.textContent = `¡Trivia terminada! Tu puntaje final es ${score} de ${questions.length}.`;
   nextButton.style.display = "none";
 
 }
 
-// start de la trivinopolis
+// inicia el juego mostrando la primera pregunta al usuario
 showQuestion();
